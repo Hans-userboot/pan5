@@ -5,12 +5,12 @@
 from bot import Bot
 from config import OWNER
 from Data import Data
-from pyrogram import filters
+from pyrogram.handlers import MessageHandler
 from pyrogram.errors import MessageNotModified
 from pyrogram.types import CallbackQuery, InlineKeyboardMarkup, Message
 
 
-@Bot.on_message(filters.private & filters.incoming & filters.command("about"))
+@Bot.on_message(MessageHandler.private & MessageHandler.incoming & filters.command("about"))
 async def _about(client: Bot, msg: Message):
     await client.send_message(
         msg.chat.id,
@@ -20,7 +20,7 @@ async def _about(client: Bot, msg: Message):
     )
 
 
-@Bot.on_message(filters.private & filters.incoming & filters.command("help"))
+@Bot.on_message(MessageHandler.private & MessageHandler.incoming & filters.command("help"))
 async def _help(client: Bot, msg: Message):
     await client.send_message(
         msg.chat.id,
