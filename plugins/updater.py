@@ -9,9 +9,7 @@ from os import environ, execle, system
 from bot import Bot
 from git import Repo
 from git.exc import InvalidGitRepositoryError
-from pyrogram import Client
-from pyrogram.handlers import MessageHandler
-from pyrogram import filters
+from pyrogram import Client, filters
 from pyrogram.types import Message
 
 from config import ADMINS, LOGGER
