@@ -59,7 +59,7 @@ def updater():
 
 
 @Bot.on_message(MessageHandler.command("update") & MessageHandler.user(ADMINS))
-async def update_bot(_, message: Message):
+async def start_handler(_, message: Message):
     message.chat.id
     msg = await message.reply_text("Checking updates...")
     update_avail = updater()
@@ -75,7 +75,7 @@ async def update_bot(_, message: Message):
 
 
 @Bot.on_message(MessageHandler.command("restart") & MessageHandler.user(ADMINS))
-async def restart_bot(_, message: Message):
+async def start_handler(_, message: Message):
     try:
         msg = await message.reply_text("`Restarting bot...`")
         LOGGER(__name__).info("BOT SERVER RESTARTED !!")
