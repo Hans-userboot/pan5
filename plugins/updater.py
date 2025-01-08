@@ -9,8 +9,7 @@ from os import environ, execle, system
 from bot import Bot
 from git import Repo
 from git.exc import InvalidGitRepositoryError
-from pyrogram import Client
-from pyrogram.handlers import MessageHandler
+from pyrogram import Client, filters
 from pyrogram.types import Message
 
 from config import ADMINS, LOGGER
@@ -58,8 +57,8 @@ def updater():
 
 
 
-@Bot.on_message(MessageHandler.command("update") & MessageHandler.user(ADMINS))
-async def start_handler(_, message: Message):
+@Bot.on_message(filters.command("update") & filters.user(ADMINS))
+async def update_bot(_, message: Message):
     message.chat.id
     msg = await message.reply_text("Checking updates...")
     update_avail = updater()
@@ -74,8 +73,8 @@ async def start_handler(_, message: Message):
     )
 
 
-@Bot.on_message(MessageHandler.command("restart") & MessageHandler.user(ADMINS))
-async def start_handler(_, message: Message):
+@Bot.on_message(filters.command("restart") & filters.user(ADMINS))
+async def restart_bot(_, message: Message):
     try:
         msg = await message.reply_text("`Restarting bot...`")
         LOGGER(__name__).info("BOT SERVER RESTARTED !!")
